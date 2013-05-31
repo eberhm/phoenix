@@ -1,10 +1,10 @@
 <?php
-namespace Phoenix;
+namespace Phoenix\Loader;
 
 use Phoenix\Container\Container,
     Phoenix\Asset\Asset;
 
-class Loader
+class Loader implements LoaderInterface
 {
     /**
      * @var array
@@ -23,8 +23,14 @@ class Loader
 
     public function __construct(array $config = array())
     {
+        $this->setConfig($config);
+    }
+
+    public function setConfig($config)
+    {
         $this->config = $config;
     }
+
 
     /**
      * @param $file
