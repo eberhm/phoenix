@@ -6,24 +6,38 @@ use Phoenix\Container\Container,
 
 class Loader implements LoaderInterface
 {
+
+    protected static $instance;
     /**
      * @var array
      */
     protected $files = array();
 
     /**
-     * @var \Phoenix\Container\ContainerInterface
-     */
-    private $container;
-
-    /**
      * @var array
      */
     private $config;
 
-    public function __construct(array $config = array())
+    protected function __construct(array $config = array())
     {
         $this->setConfig($config);
+    }
+
+    public static function getInstance()
+    {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    public static function init(array $config)
+    {
+        $loader = self::getInstance();
+        $loader->setConfig($config);
+
+        return $loader;
     }
 
     public function setConfig($config)
