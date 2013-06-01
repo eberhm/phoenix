@@ -94,7 +94,7 @@ class Loader implements LoaderInterface
         foreach ($this->files as $file) {
             $jsPackageName = $this->getJsPackageName($file);
             if ($jsPackageName) {
-                $file = '/packages/' . $jsPackageName . '.js';
+                $file = 'packages/' . $jsPackageName . '.js';
 
                 $asset = new Asset($this->getFinalPath($file));
                 $asset->setIsPackage(true);
