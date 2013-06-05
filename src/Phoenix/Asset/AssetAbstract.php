@@ -15,8 +15,6 @@ abstract class AssetAbstract implements AssetInterface
         $this->file = $file;
     }
 
-    abstract public function getFile();
-
     /**
      * @param boolean $isPackage
      */
