@@ -53,10 +53,6 @@ class Loader implements LoaderInterface
     {
         $this->addFile($file);
 
-        /*
-
-        */
-
         return $this;
     }
 
@@ -64,7 +60,7 @@ class Loader implements LoaderInterface
     {
         $packages = @$this->config['packages'] ?: array();
         foreach ($packages as $name => $files) {
-            if (in_array($file, $files)) {
+            if (in_array($file, $files) || $name === $file) {
                 return $name;
             }
         }
