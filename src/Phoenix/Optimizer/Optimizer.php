@@ -42,14 +42,12 @@ class Optimizer implements OptimizerInterface
         $assetFactory = $this->getAssetFactory($fullRoot, $this->config['debug']);
 
         foreach ($this->config['packages'] as $packageName => $files) {
-            $content = '';
-            $content .= PHP_EOL.$this->optimize(
-                $files,
-                $assetFactory
-            );
             file_put_contents(
                 $fullRoot .'/packages/'.$packageName.'.js',
-                $content
+                $this->optimize(
+                    $files,
+                    $assetFactory
+                ).PHP_EOL
             );
         }
 

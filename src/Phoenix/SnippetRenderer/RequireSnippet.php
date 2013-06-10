@@ -8,7 +8,7 @@ class RequireSnippet extends SnippetRendererAbstract
 {
     public function render(ContainerInterface $container)
     {
-        $result = 'require([';
+        $result = 'require(['.PHP_EOL;
         $assets = $container->getAssets();
         $urls = array();
         foreach ($assets as $asset) {
@@ -16,8 +16,8 @@ class RequireSnippet extends SnippetRendererAbstract
             $urls[] = '"'.$this->toUrl($asset).'"';
         }
 
-        $result .= implode(',', $urls);
-        $result .= '], function() {
+        $result .= implode(','.PHP_EOL, $urls);
+        $result .= PHP_EOL.'], function() {
             require(["main"]);
         });';
 

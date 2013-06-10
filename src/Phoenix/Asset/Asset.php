@@ -28,14 +28,14 @@ class Asset implements AssetInterface
      */
     public function isPackage()
     {
-        return $this->isPackage;
+        return (bool)$this->isPackage;
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getFile()
     {
-        return $this->file;
+        return (string)$this->file;
     }
 }
