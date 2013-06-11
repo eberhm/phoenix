@@ -18,7 +18,7 @@ class RequireSnippet extends SnippetRendererAbstract
 
         $result .= implode(',', $urls);
         $result .= '], function() {
-            require 'main';
+            require(["main"]);
         });';
 
         return $result;
