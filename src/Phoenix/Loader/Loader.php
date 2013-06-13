@@ -42,7 +42,8 @@ class Loader implements LoaderInterface
 
     public function setConfig($config)
     {
-        $this->config = $config;
+        $normalizer = new \Phoenix\Config\Normalizer();
+        $this->config = $normalizer->normalize($config);
     }
 
 
@@ -58,7 +59,7 @@ class Loader implements LoaderInterface
 
     private function getJsPackageName($file)
     {
-        $packages = @$this->config['packages'] ?: array();
+        $packages = $this->config['packages'] ?: array();
         foreach ($packages as $name => $files) {
             if (in_array($file, $files) || $name === $file) {
                 return $name;
@@ -75,7 +76,7 @@ class Loader implements LoaderInterface
 
     private function getBatchSize()
     {
-        return @$this->config['batchSize'] ?: 0;
+        return $this->config['batchSize'] ?: 0;
     }
 
     /**
@@ -89,7 +90,7 @@ class Loader implements LoaderInterface
 
         foreach ($this->files as $file) {
             $jsPackageName = $this->getJsPackageName($file);
-            if ($jsPackageName) {
+            if ($jsPackageName && !$this->config['debug']) {
                 $file = 'packages/' . $jsPackageName . '.js';
 
                 $asset = new Asset($this->getFinalPath($file));

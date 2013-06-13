@@ -21,7 +21,8 @@ class Optimizer implements OptimizerInterface
 
     public function setConfig($config)
     {
-        $this->config = $config;
+        $normalizer = new \Phoenix\Config\Normalizer();
+        $this->config = $normalizer->normalize($config);
     }
 
     public function optimizeFiles($files)
