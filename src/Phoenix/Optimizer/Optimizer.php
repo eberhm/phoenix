@@ -42,14 +42,18 @@ class Optimizer implements OptimizerInterface
 
         $assetFactory = $this->getAssetFactory($fullRoot, $this->config['debug']);
 
+        @mkdir($fullRoot.'/packages', 0755, true);
         foreach ($this->config['packages'] as $packageName => $files) {
-            file_put_contents(
-                $fullRoot .'/packages/'.$packageName.'.js',
+            $filename = $fullRoot . '/packages/' . $packageName . '.js';
+            if (false === @file_put_contents(
+                $filename,
                 $this->optimize(
                     $files,
                     $assetFactory
                 ).PHP_EOL
-            );
+            )) {
+                throw new \Exception('Error while generating package ' . $filename);
+            }
         }
 
     }

@@ -1,6 +1,6 @@
 {
     "name": "eberhm/phoenix",
-    "description": "JS Assets Loader/Optimizer",
+    "description": "JS Assets Loader/Optimizer for php Web Applications",
     "authors": [
         {
             "name": "Eber Herrera",
@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "kriswallsmith/assetic" : "1.2.*@dev"
+        "kriswallsmith/assetic" : "1.2.*@dev",
+        "symfony/console": "v2.3.1"
     },
     "require-dev": {
         "phpunit/phpunit":  "3.7.*",
@@ -18,5 +19,6 @@
         "psr-0": {
             "Phoenix": "src"
         }
-    }
+    },
+    "bin" : ["bin/phoenix"]
 }
