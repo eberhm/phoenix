@@ -42,9 +42,9 @@ class Optimizer implements OptimizerInterface
 
         $assetFactory = $this->getAssetFactory($fullRoot, $this->config['debug']);
 
-        @mkdir($fullRoot.'/packages', 0755, true);
+        @mkdir($fullRoot.'packages/', 0755, true);
         foreach ($this->config['packages'] as $packageName => $files) {
-            $filename = $fullRoot . '/packages/' . $packageName . '.js';
+            $filename = $fullRoot . 'packages/' . $packageName . '.js';
             if (false === @file_put_contents(
                 $filename,
                 $this->optimize(
