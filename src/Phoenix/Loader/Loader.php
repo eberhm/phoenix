@@ -109,11 +109,7 @@ class Loader implements LoaderInterface
         if (count($sections)) {
             foreach ($sections as $aSection) {
                 $container->add(
-                    new Asset(
-                        $this->getFinalPath(
-                            $this->config['batchController'].base64_encode(implode(',', $aSection)).'.js'
-                        )
-                    )
+                    new Asset($this->config['batchController'] . base64_encode(implode(',', $aSection)) . '.js')
                 );
             }
         }
