@@ -2,7 +2,8 @@
 namespace Phoenix\Loader;
 
 use Phoenix\Container\Container,
-    Phoenix\Asset\Asset;
+    Phoenix\Asset\Asset,
+    Phoenix\Config\Normalizer;
 
 class Loader implements LoaderInterface
 {
@@ -42,13 +43,21 @@ class Loader implements LoaderInterface
 
     public function setConfig($config)
     {
-        $normalizer = new \Phoenix\Config\Normalizer();
+        $normalizer = new Normalizer();
         $this->config = $normalizer->normalize($config);
     }
 
+    /**
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
 
     /**
      * @param $file
+     * @return $this
      */
     public function load($file)
     {
