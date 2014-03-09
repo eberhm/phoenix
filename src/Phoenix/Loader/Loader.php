@@ -126,6 +126,11 @@ class Loader implements LoaderInterface
         return $container;
     }
 
+    public function translateBatch($batch)
+    {
+        return explode(',', base64_decode($batch));
+    }
+
     private function addFile($file)
     {
         if (!in_array($file, $this->files)) {
